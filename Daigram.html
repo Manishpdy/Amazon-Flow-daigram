@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Flows</title>
+    <style>
+        /* Container for the flowchart */
+        .flowchart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            flex-direction: column;
+            padding: 10px; /* Reduced padding */
+        }
+
+        /* Heading Style */
+        h1 {
+            font-size: 30px;
+            color: #264653;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        /* Basic style for each node in the flowchart */
+        .node {
+            background-color: #a8dadc; /* Green background color for all nodes */
+            border-radius: 5px;
+            border: 2px solid #333;
+            padding: 15px;
+            margin: 5px; /* Reduced margin */
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+            width: 160px;
+            font-size: 14px;
+        }
+
+        /* Arrows between the nodes */
+        .arrow {
+            font-size: 20px;
+            color: #333;
+            margin: 0 5px; /* Reduced margin */
+        }
+
+        /* Colorful styles for different steps */
+        .red-step {
+            background-color: #e76f51; /* Red color for the step that has more errors */
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Flexbox setup for horizontal layout */
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; /* Wraps the flowchart if it exceeds the screen width */
+        }
+
+        /* Removed space between different flow sections */
+        .flow-section {
+            margin-bottom: 0px; /* Removed space between sections */
+        }
+
+        /* Error Panel Styles */
+        .error-panel {
+            display: none;
+            background-color: #ffcccc; /* Light red background */
+            border-radius: 5px;
+            border: 2px solid #ff4d4d; /* Darker red border */
+            padding: 10px;
+            width: 300px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .error-panel ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .error-panel li {
+            font-size: 14px;
+            color: #ff4d4d; /* Darker red text */
+        }
+
+        /* A container to display errors below the red steps */
+        .error-container {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #ff4d4d; /* Dark red border */
+            background-color: #ffebeb; /* Light red background */
+            width: 100%;
+            text-align: left;
+        }
+
+        .error-container h3 {
+            font-size: 18px;
+            color: #ff4d4d; /* Dark red color */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Amazon Account Creation Flow -->
+    <div class="flowchart-container flow-section">
+        <h1>Amazon Account Creation</h1>
+        <div class="flow">
+            <div class="node">User</div>
+            <div class="arrow">&#8594;</div>
+            <div class="node">Sign Up Page</div>
+            <div class="arrow">→</div>
+            <div class="node">Enter Email</div>
+            <div class="arrow">→</div>
+            <div class="node red-step" id="password-step">Enter Password</div> <!-- Red step with ID -->
+            <div class="arrow">→</div>
+            <div class="node">Confirm Email</div>
+            <div class="arrow">→</div>
+            <div class="node">Confirm Account</div>
+            <div class="arrow">→</div>
+            <div class="node">Enter Personal Info</div>
+            <div class="arrow">→</div>
+            <div class="node">Verify Info</div>
+            <div class="arrow">→</div>
+            <div class="node">Complete Registration</div>
+            <div class="arrow">→</div>
+            <div class="node">Login Page</div>
+        </div>
+
+        <!-- Error Panel for Password Step below -->
+        <div class="error-container" id="password-errors">
+            <h3>Possible Errors in Entering Password</h3>
+            <ul>
+                <li>Weak password (must include uppercase letters, numbers, and symbols)</li>
+                <li>Password mismatch (ensure both password fields match)</li>
+                <li>Password too short (minimum 8 characters required)</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Amazon Order Placement Flow -->
+    <div class="flowchart-container">
+        <h1>Amazon Order Placement</h1>
+        <div class="flow">
+            <div class="node">User Logs In</div>
+            <div class="arrow">→</div>
+            <div class="node">Search Products</div>
+            <div class="arrow">→</div>
+            <div class="node">Add to Cart</div>
+            <div class="arrow">→</div>
+            <div class="node">Proceed to Checkout</div>
+            <div class="arrow">→</div>
+            <div class="node">Enter Shipping Info</div>
+            <div class="arrow">→</div>
+            <div class="node red-step" id="payment-step">Select Payment</div>
+            <div class="arrow">→</div>
+            <div class="node">Place Order</div>
+        </div>
+    </div>
+
+        <!-- Error Panel for Payment Step below -->
+        <div class="error-container" id="payment-errors">
+            <h3>Possible Errors in Payment</h3>
+            <ul>
+                <li>Insufficient balance in account</li>
+                <li>Incorrect payment details (e.g., expired credit card)</li>
+                <li>Payment gateway error (check for technical issues)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Product Replacement Flow -->
+    <div class="flowchart-container flow-section">
+        <h1>Amazon Order Replacement</h1>
+        <div class="flow">
+            <div class="node">User</div>
+            <div class="arrow">→</div>
+            <div class="node">Log into Amazon Account</div>
+            <div class="arrow">→</div>
+            <div class="node">Select Product</div>
+            <div class="arrow">→</div>
+            <div class="node">Provide Reason for Replacement</div>
+            <div class="arrow">→</div>
+            <div class="node">Check Eligibility for Replacement</div>
+            <div class="arrow">→</div>
+            <div class="node">Choose Replacement Option</div>
+            <div class="arrow">→</div>
+            <div class="node">Submit Request</div>
+            <div class="arrow">→</div>
+            <div class="node red-step" id="return-step">Return the Product</div> <!-- Red step with ID -->
+            <div class="arrow">→</div>
+            <div class="node">Receive Replacement Item</div>
+        </div>
+
+        <!-- Error Panel for Return Step below -->
+        <div class="error-container" id="return-errors">
+            <h3>Possible Errors in Returning the Product</h3>
+            <ul>
+                <li>Product not eligible for return (e.g., time window passed)</li>
+                <li>Return shipping label issues (incorrect address or label missing)</li>
+                <li>Refund failure due to account issues</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
